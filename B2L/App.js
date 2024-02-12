@@ -1,20 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import {View, Text, Image, ScrollView, TextInput} from 'react-native';
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Salut j'ai mis 40 années lumières a fonctionner mais je marche</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ScrollView>
+      <Text>Some text</Text>
+      <View>
+        <Text>Some more text</Text>
+        <Image
+          source={{
+            uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
+          }}
+          style={{width: 200, height: 200}}
+        />
+      </View>
+      <TextInput
+        style={{
+          height: 40,
+          borderColor: 'red',
+          borderWidth: 4,
+          textAlign: 'center',
+        }}
+        defaultValue="You can type in me"
+      />
+    </ScrollView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
