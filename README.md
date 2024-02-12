@@ -32,7 +32,8 @@ Maintenant passons à la partie mise en place du projet:
   1) npm install
   2) npm install react
   3) npm install react-native
-  4) npx expo start
+  4) yarn add expo
+  5) npx expo start
 
 Je précise que pour exécuter la commande 4 il faut au préalable que le téléphone et l'ordinateur de dev soient sur la même connexion internet car sinon cela ne vas pas fonctionner. De plus pour les utilisateur Android il vous faudra dans les paramètres aller dans les parametres de développeurs et activer les Deboguage USB. Pour ceux qui ne saventy pas comment accéder aux parametres développeurs aller dans paramètres et tout en bas aller dans " à propos du telephonne " puis dans " information sur le logiciel " et apres cliquer 5 fois ou plus sur " numero de version " les options de developpement se trouveront tout en bas de paramètre.
 
