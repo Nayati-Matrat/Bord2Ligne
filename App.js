@@ -1,28 +1,36 @@
 import React from 'react';
-import {View, Text, Image, ScrollView, TextInput} from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
 const App = () => {
   return (
-    <ScrollView>
-      <Text>Some text</Text>
-      <View>
-        <Text>Some more text</Text>
-        <Image
-          source={require('./IMAGES/oui.png')}
-          style={{width: 200, height: 200}}
-        />
-      </View>
-      <TextInput
-        style={{
-          height: 40,
-          borderColor: 'red',
-          borderWidth: 4,
-          textAlign: 'center',
+    <View style={styles.container}>
+      <MapView
+        style={styles.map}
+        initialRegion={{
+          latitude: 37.78825,
+          longitude: -122.4324,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
         }}
-        defaultValue="enter text here"
-      />
-    </ScrollView>
+      >
+        <Marker
+          coordinate={{ latitude: 37.78825, longitude: -122.4324 }}
+          title="Marker Title"
+          description="Marker Description"
+        />
+      </MapView>
+    </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  map: {
+    flex: 1,
+  },
+});
 
 export default App;
