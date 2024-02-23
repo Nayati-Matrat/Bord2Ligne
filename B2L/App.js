@@ -8,9 +8,7 @@ const App = () => {
       <View>
         <Text>Some more text</Text>
         <Image
-          source={{
-            uri: 'https://reactnative.dev/docs/assets/p_cat2.png',
-          }}
+          source={require('./IMAGES/oui.png')}
           style={{width: 200, height: 200}}
         />
       </View>
@@ -21,7 +19,7 @@ const App = () => {
           borderWidth: 4,
           textAlign: 'center',
         }}
-        defaultValue="You can type in me"
+        defaultValue="enter text here"
       />
     </ScrollView>
   );
