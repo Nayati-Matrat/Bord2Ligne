@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
@@ -8,9 +8,30 @@ const App = () => {
     longitude: 0.083,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
+    //initialisation de la carte sur la ville de Tarbes
   };
 
   const [markers, setMarkers] = useState([]);
+  const [userLocation, setUserLocation] = useState(null);
+
+  useEffect(() => {
+    const getUserLocation = () => {
+      if ('geolocation' in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const { latitude, longitude } = position.coords;
+            setUserLocation({ latitude, longitude });
+          },
+          error => console.log(error.message),
+          { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+        );
+      } else {
+        console.log('La géolocalisation n\'est pas disponible sur cet appareil.');
+      }
+    };
+
+    getUserLocation();
+  }, []);
 
   const handleMapPress = (event) => {
     const { coordinate } = event.nativeEvent;
@@ -31,6 +52,13 @@ const App = () => {
             title={`Lieu ${index + 1}`}
           />
         ))}
+        {userLocation && (
+          <Marker
+            coordinate={userLocation}
+            title="Votre position"
+            pinColor="blue"
+          />
+        )}
       </MapView>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
