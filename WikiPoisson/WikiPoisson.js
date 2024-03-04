@@ -1,2 +1,0 @@
-"Reactnative 
-Django --> Python 
