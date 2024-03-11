@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, WebView } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 const App = () => {
@@ -13,6 +13,9 @@ const App = () => {
 
   const [markers, setMarkers] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+  const [showJournal, setShowJournal] = useState(false);
+  const [showWiki, setShowWiki] = useState(false);
+  const [weather, setWeather] = useState(null);
 
   useEffect(() => {
     const getUserLocation = () => {
@@ -21,6 +24,7 @@ const App = () => {
           position => {
             const { latitude, longitude } = position.coords;
             setUserLocation({ latitude, longitude });
+            fetchWeather(latitude, longitude);
           },
           error => console.log(error.message),
           { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -32,6 +36,18 @@ const App = () => {
 
     getUserLocation();
   }, []);
+
+  const fetchWeather = async (latitude, longitude) => {
+    const API_KEY = '3f0c2ada15ca8d9efe8db3bb97ac5373' ; // Remplacez par votre propre clé API OpenWeatherMap
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setWeather(data);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des données météo:', error);
+    }
+  };
 
   const handleMapPress = (event) => {
     const { coordinate } = event.nativeEvent;
@@ -60,12 +76,44 @@ const App = () => {
           />
         )}
       </MapView>
-      <View style={styles.buttonContainer}>
+
+      {showJournal && (
+        <WebView
+          style={styles.webview}
+          source={{ uri: 'https://www.comite-peches.fr/mise-a-jour-du-journal-de-peche-electronique/' }}
+        />
+      )}
+
+      {showWiki && (
+        <WebView
+          style={styles.webview}
+          source={{ uri: 'https://fr.wikipedia.org/wiki/Poisson' }}
+        />
+      )}
+
+      {weather && (
+        <View style={styles.weatherContainer}>
+          <Text style={styles.weatherText}>Température: {weather.main.temp}°C</Text>
+          <Text style={styles.weatherText}>Humidité: {weather.main.humidity}%</Text>
+          <Text style={styles.weatherText}>Conditions: {weather.weather[0].description}</Text>
+        </View>
+      )}
+
+      <View style={styles.bottomCenterContainer}>
+        {/* Bouton pour accéder au journal de bord */}
         <TouchableOpacity
           style={styles.button}
-          onPress={() => setMarkers([])}
+          onPress={() => setShowJournal(!showJournal)}
         >
-          <Text style={styles.buttonText}>Effacer les lieux</Text>
+          <Text style={styles.buttonText}>Journal de bord</Text>
+        </TouchableOpacity>
+
+        {/* Bouton pour accéder au wiki sur les poissons */}
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => setShowWiki(!showWiki)}
+        >
+          <Text style={styles.buttonText}>Wiki sur les poissons</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -79,21 +127,36 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
-  buttonContainer: {
-    position: 'absolute',
-    bottom: 16,
-    left: 16,
-    right: 16,
-    alignItems: 'center',
-  },
   button: {
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 6,
+    marginBottom: 10,
   },
   buttonText: {
     color: 'white',
+    fontSize: 16,
+  },
+  bottomCenterContainer: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+  },
+  webview: {
+    flex: 1,
+  },
+  weatherContainer: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    padding: 10,
+    borderRadius: 6,
+  },
+  weatherText: {
     fontSize: 16,
   },
 });
