@@ -9,7 +9,6 @@ const App = () => {
     longitude: 0.083,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
-    //initialisation de la carte sur la ville de Tarbes
   };
 
   const [markers, setMarkers] = useState([]);
@@ -17,6 +16,7 @@ const App = () => {
   const [showJournal, setShowJournal] = useState(false);
   const [showWiki, setShowWiki] = useState(false);
   const [weather, setWeather] = useState(null);
+  const [showMap, setShowMap] = useState(true);
 
   useEffect(() => {
     const getUserLocation = () => {
@@ -39,7 +39,7 @@ const App = () => {
   }, []);
 
   const fetchWeather = async (latitude, longitude) => {
-    const API_KEY = '3f0c2ada15ca8d9efe8db3bb97ac5373' ; // Remplacez par votre propre clé API OpenWeatherMap
+    const API_KEY = '3f0c2ada15ca8d9efe8db3bb97ac5373';
     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;
     try {
       const response = await fetch(url);
@@ -57,26 +57,28 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      <MapView
-        style={styles.map}
-        initialRegion={initialRegion}
-        onPress={handleMapPress}
-      >
-        {markers.map((marker, index) => (
-          <Marker
-            key={index}
-            coordinate={marker}
-            title={<text>`Lieu ${index + 1}</text>}
-          />
-        ))}
-        {userLocation && (
-          <Marker
-            coordinate={userLocation}
-    title={<Text>Votre position</Text>}
-            pinColor="blue"
-          />
-        )}
-      </MapView>
+      {showMap && (
+        <MapView
+          style={styles.map}
+          initialRegion={initialRegion}
+          onPress={handleMapPress}
+        >
+          {markers.map((marker, index) => (
+            <Marker
+              key={index}
+              coordinate={marker}
+              title={`Lieu ${index + 1}`}
+            />
+          ))}
+          {userLocation && (
+            <Marker
+              coordinate={userLocation}
+              title={'Votre position'}
+              pinColor="blue"
+            />
+          )}
+        </MapView>
+      )}
 
       {showJournal && (
         <WebView
@@ -95,23 +97,26 @@ const App = () => {
         </View>
       )}
 
-      <View style={styles.bottomCenterContainer}>
-        {/* Bouton pour accéder au journal de bord */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setShowJournal(!showJournal)}
-        >
-          <Text style={styles.buttonText}>Journal de bord</Text>
-        </TouchableOpacity>
+      {showMap && ( // Afficher les boutons seulement si showMap est true
+        <View style={styles.bottomCenterContainer}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => setShowJournal(!showJournal)}
+          >
+            <Text style={styles.buttonText}>Journal de bord</Text>
+          </TouchableOpacity>
 
-        {/* Bouton pour accéder au wiki sur les poissons */}
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => setShowWiki(true)}
-        >
-          <Text style={styles.buttonText}>Wiki sur les poissons</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              setShowWiki(true);
+              setShowMap(false);
+            }}
+          >
+            <Text style={styles.buttonText}>Wiki sur les poissons</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 };
