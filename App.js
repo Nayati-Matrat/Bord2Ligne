@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, WebView } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import WikiPoisson from './template/WikiPoisson';
 
 const App = () => {
   const initialRegion = {
@@ -65,13 +66,13 @@ const App = () => {
           <Marker
             key={index}
             coordinate={marker}
-            title={`Lieu ${index + 1}`}
+            title={<text>`Lieu ${index + 1}</text>}
           />
         ))}
         {userLocation && (
           <Marker
             coordinate={userLocation}
-            title="Votre position"
+    title={<Text>Votre position</Text>}
             pinColor="blue"
           />
         )}
@@ -84,12 +85,7 @@ const App = () => {
         />
       )}
 
-      {showWiki && (
-        <WebView
-          style={styles.webview}
-          source={{ uri: 'https://fr.wikipedia.org/wiki/Poisson' }}
-        />
-      )}
+      {showWiki && <WikiPoisson />}
 
       {weather && (
         <View style={styles.weatherContainer}>
@@ -111,7 +107,7 @@ const App = () => {
         {/* Bouton pour accéder au wiki sur les poissons */}
         <TouchableOpacity
           style={styles.button}
-          onPress={() => setShowWiki(!showWiki)}
+          onPress={() => setShowWiki(true)}
         >
           <Text style={styles.buttonText}>Wiki sur les poissons</Text>
         </TouchableOpacity>
@@ -119,6 +115,7 @@ const App = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
