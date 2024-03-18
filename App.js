@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, WebView } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import WikiPoisson from './template/WikiPoisson';
+import WikiPoisson from './template/WikiPoisson/Wikipoisson_FrontEnd/WikiPoisson';
 
 const App = () => {
   const initialRegion = {
