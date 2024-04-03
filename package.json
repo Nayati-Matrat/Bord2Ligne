@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "core-js": "^3.36.1"
+  },
+  "devDependencies": {
+    "@symfony/stimulus-bridge": "^3.2.2",
+    "@symfony/webpack-encore": "^4.6.1",
+    "webpack-notifier": "^1.15.0"
+  },
+  "scripts": {
+    "build": "encore production"
+  }
+}
