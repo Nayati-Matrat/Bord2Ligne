@@ -1,20 +1,25 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\home;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class HomeController extends AbstractController
+/**
+ * @Route("/", name="home_")
+ 
+ */
+
+class homeController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home")
+     * @Route("/", name="index")
      */
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+            'controller_name' => 'homeController',
         ]);
     }
 }
