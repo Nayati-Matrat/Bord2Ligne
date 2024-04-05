@@ -1,14 +1,30 @@
 {
   "dependencies": {
-    "bootstrap": "^5.3.3",
     "core-js": "^3.36.1"
   },
   "devDependencies": {
+    "@popperjs/core": "^2.11.8",
     "@symfony/stimulus-bridge": "^3.2.2",
     "@symfony/webpack-encore": "^4.6.1",
+    "bootstrap": "^5.3.3",
+    "bootstrap-switch-button": "^1.1.0",
+    "css-loader": "^6.11.0",
+    "jquery": "^3.7.1",
+    "sass": "^1.74.1",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
     "webpack-notifier": "^1.15.0"
   },
   "scripts": {
-    "build": "encore production"
+    "assets": "php bin/console fos:js-routing:dump --format=json --target=public/js/fos_js_routes.json",
+    "build": "encore production --progress",
+    "dev-server": "php bin/console cache:clear && npm i && encore dev-server",
+    "postinstall": "composer i",
+    "dev": "encore dev"
+  },
+  "overrides": {
+    "bootstrap-switch": {
+      "bootstrap": "^5.3.3"
+    }
   }
 }

@@ -2,27 +2,27 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}Bord 2 Ligne{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('Images/b2l.ico') }}" />
-    <style>
-        body {
-            height: 100vh;
-            background-image: url("{{ asset('Images/logo.jpg') }}");
-            background-size: cover;
-            background-position: center;
-            /* Autres styles si nécessaire */
-        }
-    </style>
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+    {{ encore_entry_link_tags('app') }}
+    {% block stylesheets %}{% endblock %}
+    {% block meta %}{% endblock %}
 </head>
 <body>
-{% include 'home/navbarPublic.html.twig' %}
-{% block body %}{% endblock %}
+<div class="container-fluid p-0">
+    <div class="row no-gutters">
+        <!-- Sidebar -->
+        <div id="sidebar" class="col-md-3 col-lg-2 bg-dark">
+            {% include 'home/navbarPublic.html.twig' %}
+        </div>
+        <!-- Content -->
+        <div id="content" class="col-md-9 col-lg-10 text-right">
+            {% block body %}{% endblock %}
+        </div>
+    </div>
+</div>
+{{ encore_entry_script_tags('app') }}
+{% block javascripts %}{% endblock %}
+<div id="js__modal"></div>
 </body>
 </html>
