@@ -22,7 +22,9 @@
     </div>
 </div>
 {{ encore_entry_script_tags('app') }}
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+<script src="{{ asset('build/app.js') }}" type="module"></script>
+{% endblock %}
 <div id="js__modal"></div>
 </body>
 </html>

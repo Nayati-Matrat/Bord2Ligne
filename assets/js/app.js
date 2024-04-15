@@ -1,14 +1,16 @@
-/*
- * Welcome to your app's main JavaScript file!
- *
- * We recommend including the built version of this JavaScript file
- * (and its CSS file) in your base layout (base.html.twig).
- */
-
-// any CSS you import will output into a single css file (app.css in this case)
+// Importation des styles SCSS
 import './scss/app.scss';
 
-/** Bootstrap */
-import 'bootstrap'
-import 'bootstrap-switch-button'
-import 'bootstrap-switch-button/css/bootstrap-switch-button.min.css'
+// Importation des bibliothèques Bootstrap et Bootstrap Switch Button
+import 'bootstrap';
+import 'bootstrap-switch-button';
+import 'bootstrap-switch-button/css/bootstrap-switch-button.min.css';
+
+// Importation du contrôleur HomeController
+import HomeController from './home_controller';
+
+// Initialisation de Stimulus
+import { Application } from 'stimulus';
+
+const application = Application.start();
+application.register('home', HomeController); // Enregistrement du contrôleur HomeController

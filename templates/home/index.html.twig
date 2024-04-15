@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bord 2 Ligne Accueil{% endblock %}
+{% block title %}Bord 2 Ligne Accueil
+{% endblock %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+{% endblock %}
 
 {% block body %}
-
-<h1 class="text-center">Bonjour et bienvenue sur le site de Bord 2 Ligne</h1>
-
+	<div id="js__map" data-controller="map"></div>
+	<h1 class="text-center">Bonjour et bienvenue sur le site de Bord 2 Ligne</h1>
+	<div id="map" style="height: 80%;"></div>
 {% endblock %}
