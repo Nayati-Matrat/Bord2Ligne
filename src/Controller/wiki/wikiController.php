@@ -2,12 +2,10 @@
 
 namespace App\Controller\wiki;
 
-use App\Entity\PoissonAbledeheckel;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Article;
-use App\Repository\ArticleRepository;
+use App\Repository\PoissonAbledeheckelRepository;
 
 /**
  * @Route("/wiki", name="wiki_")
@@ -18,16 +16,14 @@ class wikiController extends AbstractController
     /**
      * @Route("/", name="index")
      */
-    public function index(ArticleRepository $articleRepository): Response
-    {
+    public function index(PoissonAbledeheckelRepository $repository): Response
+{
+    $test = $repository->findAll();
+    dd($test);
 
-        
-
-        $articles = $articleRepository->findAll();
-        
+    
         return $this->render('wiki/index.html.twig', [
             'controller_name' => 'wikiController',
-            'articles'=> $articles
         ]);
     }
 }
