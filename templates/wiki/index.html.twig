@@ -9,19 +9,9 @@
 
 <h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
 
-<section class="articles">
-    {% for article in articles %}
-
-<article>
-<h2>Poisson ablede</h2>*
-<div class="metadata">Ecrit le xxx
-    <div class="content">
-        <img srx="http//placehold.it350x150" alt=""
-        <p>Lorem dezfrfhb fbznfzehn</p>
+{%for poisson in poissonabledeheckel%}
         
-    </div>
+    {{poisson.getnom()}}
 
-
-</article>
-{% endfor %}
+{%endfor%}
 {% endblock %}
