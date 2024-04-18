@@ -4,14 +4,24 @@
 
 {% block body %}
 
-<section class="poisson"
+<section class="poisson">
+    <h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
 
+    {% for poisson in poissonabledeheckel %}
+    <p>
+        <a href="{{ path('wiki_index') }}" class="btn btn-primary">Poisson Abledehekeckel</a>
+        {{ poisson.nom }}
+        {{ poisson.nomscien }}
+    </p>    
+    {% endfor %}
 
-<h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
+    {% for poisson in poissonspirlin %}
+    <p>
+        <a href="{{ path('wiki_index') }}" class="btn btn-primary">Poisson Spirlin</a>
+        {{ poisson.nom }}
+        {{ poisson.nomscien }}
+    </p>    
+    {% endfor %}
+</section>
 
-{%for poisson in poissonabledeheckel%}
-        
-    {{poisson.getnom()}}
-
-{%endfor%}
 {% endblock %}
