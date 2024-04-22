@@ -1,11 +1,11 @@
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar w-100" style="height: 100vh;">
+        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar">
             <div class="sidebar-sticky">
                 <div id="menu" class="text-white d-flex align-items-center py-4">
-                    <img src="{{ asset('Images/logo.png') }}" alt="Logo" style="width: 70px;" class="mr-2">
-                    <h1 class="h5 mb-0 ml-2">Bord 2 Ligne</h1>
+                    <img src="{{ asset('Images/logo.png') }}" alt="Logo" class="mr-2" style="width: 70px;">
+                    <h1 class="h5 mb-0">Bord 2 Ligne</h1>
                 </div>
                 <ul class="nav flex-column mt-3">
                     <li class="nav-item">
@@ -14,8 +14,24 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ path('wiki_index') }}">Wiki Des Poissons</a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="menuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <!-- Icone de trois petits points -->
+                                ...
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="menuButton">
+                                <button id="showMarkerListBtn" class="dropdown-item">Marqueurs Enregistrés</button>
+                                <!-- Vous pouvez ajouter d'autres boutons ici -->
+                            </div>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
     </div>
 </div>
+
+{% block javascripts %}
+    <script src="{{ asset('js/navbar/navbar.js') }}"></script>
+{% endblock %}

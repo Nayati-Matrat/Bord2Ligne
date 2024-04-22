@@ -1,17 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bord 2 Ligne Accueil
-{% endblock %}
+{% block title %}Bord 2 Ligne Accueil{% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 {% endblock %}
 
 {% block body %}
-	<div id="map" style="height: 100vh;"></div>
-{% endblock %}
+    <div id="map" style="height: calc(100vh - 40px);"></div>
+    <div id="markerList"></div>
 
 {% block javascripts %}
-	<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-	<script src="{{ asset('js/home/map.js') }}"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('je teste le bon chargement de la page');
+            var mymap = L.map('map').setView([43.2327, 0.0802], 13); // Coordonnées de Tarbes
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(mymap);
+        });
+    </script>
 {% endblock %}

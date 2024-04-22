@@ -1,0 +1,12 @@
+.navbar-bottom-left {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+
+.dropdown-menu {
+    z-index: 1000;
+}
+
+/* ... autres styles ... */
