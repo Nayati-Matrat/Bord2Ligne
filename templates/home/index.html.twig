@@ -4,11 +4,23 @@
 {% endblock %}
 
 {% block stylesheets %}
-	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 {% endblock %}
 
 {% block body %}
-	<div id="js__map" data-controller="map"></div>
-	<h1 class="text-center">Bonjour et bienvenue sur le site de Bord 2 Ligne</h1>
-	<div id="map" style="height: 80%;"></div>
+	<div id="map" style="height: 100vh;"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('je teste le bon chargement de la page');
+            var mymap = L.map('map').setView([43.2327, 0.0802], 13); // Coordonnées de Tarbes
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(mymap);
+        });
+    </script>
 {% endblock %}
