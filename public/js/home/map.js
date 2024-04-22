@@ -1,5 +1,3 @@
-// assets/js/map.js
-
 document.addEventListener('DOMContentLoaded', function() {
     console.log('je teste le bon chargement de la page');
     var mymap = L.map('map').setView([43.2327, 0.0802], 13); // Coordonnées de Tarbes
