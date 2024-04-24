@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     console.log('je teste le bon chargement de la page');
-    
+
     var mymap = L.map('map').setView([43.2327, 0.0802], 13); // Coordonnées de Tarbes
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -14,13 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function addMarker(e) {
         var marker = L.marker(e.latlng).addTo(mymap);
         markers.push(marker);
-        
+
         // Demander un nom pour le marqueur
         var markerName = prompt('Entrez un nom pour ce marqueur:');
-        
+
         // Ajouter le nom comme propriété au marqueur
         marker.bindPopup(markerName).openPopup();
-        
+
         // Stocker le marqueur avec son nom
         localStorage.setItem(markerName, JSON.stringify(e.latlng));
     }
@@ -31,12 +31,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // Charger les marqueurs depuis localStorage
     for (var i = 0; i < localStorage.length; i++) {
         var key = localStorage.key(i);
-        var markerPosition = JSON.parse(localStorage.getItem(key));
-        
-        if (markerPosition) {
-            var marker = L.marker(markerPosition).addTo(mymap);
-            marker.bindPopup(key).openPopup();
-            markers.push(marker);
+        var markerPositionString = localStorage.getItem(key);
+
+        try {
+            var markerPosition = JSON.parse(markerPositionString);
+            if (markerPosition) {
+                var marker = L.marker(markerPosition).addTo(mymap);
+                marker.bindPopup(key).openPopup();
+                markers.push(marker);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la lecture depuis localStorage :', error);
         }
     }
 });
