@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.5.2",
     "core-js": "^3.36.1",
     "leaflet": "^1.9.4"
   },
@@ -10,6 +11,7 @@
     "bootstrap": "^5.3.3",
     "bootstrap-switch-button": "^1.1.0",
     "css-loader": "^6.11.0",
+    "file-loader": "^6.0.0",
     "jquery": "^3.7.1",
     "sass": "^1.74.1",
     "sass-loader": "^14.1.1",
