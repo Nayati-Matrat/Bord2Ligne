@@ -2,8 +2,82 @@
 
 {% block title %}Bord 2 Ligne Wiki{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('public/config_css/wiki.css') }}">
+{% endblock %}
+
 {% block body %}
 
-<h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
+<h1 style="text-align: center">Bonjour et bienvenue sur la partie wiki de Bord 2 Ligne</h1>
+
+<div class="container mt-5">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Nom du poisson</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fish in fishes %}
+                <tr>
+                    <td>
+                        <a href="#" class="fish-link" data-toggle="modal" data-target="#fishModal" data-name="{{ fish.name }}" data-description="{{ fish.description }}">{{ fish.name }}</a>
+                    </td>
+                    <td>{{ fish.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="fishModal" tabindex="-1" role="dialog" aria-labelledby="fishModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="fishModalLabel"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p id="fishDescription"></p>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}
+
+{% block javascripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const fishLinks = document.querySelectorAll('.fish-link');
+
+        fishLinks.forEach(function(link) {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                const name = link.getAttribute('data-name');
+                const description = link.getAttribute('data-description');
+                
+                const modalTitle = document.querySelector('#fishModalLabel');
+                const modalDescription = document.querySelector('#fishDescription');
+                
+                modalTitle.textContent = name;
+                modalDescription.textContent = description;
+            });
+        });
+    });
+</script>
+{% endblock %}
+
+
+
+{% set fishes = [
+    { 'name': 'Poisson rouge', 'description': 'Le poisson rouge est un petit poisson d\'eau douce très populaire en aquariophilie.' },
+    { 'name': 'Tetra néon', 'description': 'Le tétra néon est un petit poisson tropical très coloré.' },
+    { 'name': 'Poisson clown', 'description': 'Le poisson clown est un poisson d\'eau de mer reconnaissable à ses couleurs vives et à ses trois bandes blanches.' }
+] %}
