@@ -1,61 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bord 2 Ligne Accueil{% endblock %}
+{% block title %}Bord 2 Ligne Accueil
+{% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
 {% endblock %}
 
 {% block body %}
-    <div id="map" style="height: 100vh;"></div>
+	<div id="menu" style="position: relative;">
+		<div id="map" style="height: 100vh;">
+			<button id="gigachad-btn" class="btn btn-primary fas fa-stream" style="position: absolute; top: 10px; right: 20px; z-index: 1000;"></button>
+			<div id="gigachad-menu" class="bg-light border p-3 shadow-sm position-fixed" style="bottom: -300px; left: 0; right: 0; height: 300px; overflow-y: auto; pointer-events: none;">
+			</div>
+		</div>
+	</div>
 {% endblock %}
-
 {% block javascripts %}
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('je teste le bon chargement de la page');
-            
-            var mymap = L.map('map').setView([43.2327, 0.0802], 13); // Coordonnées de Tarbes
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(mymap);
-
-            // Tableau pour stocker les marqueurs
-            var markers = [];
-
-            // Fonction pour ajouter un marqueur
-            function addMarker(lat, lng, name) {
-                var marker = L.marker([lat, lng]).addTo(mymap);
-                marker.bindPopup(name).openPopup();
-                
-                markers.push(marker);
-                
-                // Ajouter le bouton de suppression
-                var popupContent = '<div>' + name + '</div><button onclick="deleteMarker(' + markers.length + ')">Supprimer</button>';
-                marker.bindPopup(popupContent);
-            }
-
-            // Fonction pour supprimer un marqueur
-            function deleteMarker(index) {
-                if (markers[index - 1]) {
-                    mymap.removeLayer(markers[index - 1]);
-                    markers.splice(index - 1, 1);
-                }
-            }
-
-            // Écouter le clic sur la carte pour ajouter un marqueur
-            mymap.on('click', function(event) {
-                var lat = event.latlng.lat;
-                var lng = event.latlng.lng;
-                
-                var name = prompt("Nom du lieu :");
-                
-                if (name) {
-                    addMarker(lat, lng, name);
-                }
-            });
-        });
-    </script>
+	<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+	<script src="{{ asset('js/home/map.js') }}"></script>
 {% endblock %}

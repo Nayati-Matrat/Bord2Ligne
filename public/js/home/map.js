@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Tableau pour stocker les marqueurs
     var markers = [];
 
-    // Ajouter un marqueur
+    // Fonction pour ajouter un marqueur
     function addMarker(e) {
         var marker = L.marker(e.latlng).addTo(mymap);
         markers.push(marker);
@@ -44,4 +44,29 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Erreur lors de la lecture depuis localStorage :', error);
         }
     }
+
+    // Créer le menu Gigachad en bas de la page
+    var gigachadMenu = document.createElement('div');
+    gigachadMenu.id = 'gigachad-menu';
+    gigachadMenu.classList.add('bg-light', 'border', 'p-3', 'shadow-sm', 'position-fixed');
+    gigachadMenu.style.bottom = '-300px'; // Caché au départ
+    gigachadMenu.style.left = '0';
+    gigachadMenu.style.right = '0';
+    gigachadMenu.style.height = '300px';
+    gigachadMenu.style.overflowY = 'auto';
+    gigachadMenu.style.pointerEvents = 'none'; // Ne pas réagir aux clics
+
+    var gigachadContent = document.createElement('div');
+    gigachadContent.innerHTML = '<h5>Liste des points</h5><ul id="marker-list" class="list-group"></ul>';
+    gigachadMenu.appendChild(gigachadContent);
+
+    document.body.appendChild(gigachadMenu);
+
+    var gigachadBtn = document.getElementById('gigachad-btn');
+
+    // Événement clic sur le bouton Gigachad
+    gigachadBtn.addEventListener('click', function (event) {
+        gigachadMenu.style.bottom = gigachadMenu.style.bottom === '-300px' ? '0' : '-300px';
+        event.stopPropagation(); // Empêcher la propagation du clic sur la carte
+    });
 });
