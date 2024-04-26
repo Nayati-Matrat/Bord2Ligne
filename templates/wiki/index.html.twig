@@ -10,18 +10,10 @@
     {% for poisson in poissonabledeheckel %}
     <p>
         <a href="{{ path('wiki_index') }}" class="btn btn-primary">Poisson Abledehekeckel</a>
-        {{ poisson.nom }}
-        {{ poisson.nomscien }}
+        {{ poisson.Nom }}
+        
     </p>    
-    {% endfor %}
-
-    {% for poisson in poissonspirlin %}
-    <p>
-        <a href="{{ path('wiki_index') }}" class="btn btn-primary">Poisson Spirlin</a>
-        {{ poisson.nom }}
-        {{ poisson.nomscien }}
-    </p>    
-    {% endfor %}
+   
 </section>
-
+{% endfor %}
 {% endblock %}
