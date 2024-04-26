@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bord 2 Ligne Wiki{% endblock %}
+
+{% block body %}
+
+<section class="poisson">
+    <h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
+
+    {% for poisson in Poisson1 %}
+    <p>
+        <a href="{{ path('wiki_details', {'id': poisson.id}) }}" class="btn btn-primary">{{ poisson.id }}</a>
+        {{ poisson.Nom }}
+        
+    </p>    
+   
+</section>
+{% endfor %}
+{% endblock %}
