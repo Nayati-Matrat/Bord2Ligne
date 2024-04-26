@@ -19,16 +19,25 @@ class wikiController extends AbstractController
      */
     public function index(PoissonRepository $repository): Response
 {
-    $Poissonhabledeheckel = $repository->findAll();
+    $Poisson1 = $repository->findAll();
     
 
     
         return $this->render('wiki/index.html.twig', [
             'controller_name' => 'wikiController',
-            'poissonabledeheckel'=>$Poissonhabledeheckel,
+            'Poisson1'=>$Poisson1,
         ]);
 
     }
-
+    
+/**
+ * @Route("/poisson/{id}", name="details")
+ */
+public function details(Poisson $poisson): Response
+{
+    return $this->render('wiki/details.html.twig', [
+        'poisson' => $poisson,
+    ]);
+}
     
 }
