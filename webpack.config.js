@@ -22,6 +22,7 @@ Encore
      */
     .addEntry('app', './assets/scss/app.scss')
     .addStyleEntry('bootstrap', './node_modules/bootstrap/dist/css/bootstrap.css')
+    .addStyleEntry('fontawesome', './node_modules/@fortawesome/fontawesome-free/css/all.min.css')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/stimulus-controllers.json')
@@ -72,6 +73,6 @@ Encore
 
     // uncomment if you're having problems with a jQuery plugin
     //.autoProvidejQuery()
-;
+    ;
 
 module.exports = Encore.getWebpackConfig();

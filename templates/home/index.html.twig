@@ -2,8 +2,22 @@
 
 {% block title %}Bord 2 Ligne Accueil{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+{% endblock %}
+
 {% block body %}
+    <div id="menu" style="position: relative;">
+        <div id="map" style="height: 100vh;">
+            <button id="gigachad-btn" class="btn btn-primary fas fa-stream" style="position: absolute; top: 10px; right: 20px; z-index: 1000;"></button>
+            <div id="gigachad-menu" class="bg-light border p-3 shadow-sm position-fixed">
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
-<h1 class="text-center">Bonjour et bienvenue sur le site de Bord 2 Ligne</h1>
-
+{% block javascripts %}
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="{{ asset('js/home/map.js') }}"></script>
 {% endblock %}

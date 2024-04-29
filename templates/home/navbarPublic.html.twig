@@ -1,21 +1,23 @@
+{% block stylesheets %}{% endblock %}
 <div class="container-fluid">
-    <div class="row">
-        <!-- Sidebar -->
-        <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar w-100" style="height: 100vh;">
-            <div class="sidebar-sticky">
-                <div id="menu" class="text-white d-flex align-items-center py-4">
-                    <img src="{{ asset('Images/logo.png') }}" alt="Logo" style="width: 70px;" class="mr-2">
-                    <h1 class="h5 mb-0 ml-2">Bord 2 Ligne</h1>
-                </div>
-                <ul class="nav flex-column mt-3">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('home_index') }}">Accueil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('wiki_index') }}">Wiki Des Poissons</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+	<div class="row">
+		<div id="menu" class="text-white d-flex align-items-center py-4">
+			<img src="{{ asset('Images/logo.png') }}" alt="Logo" class="mr-2" style="width: 70px;">
+			<h2 class="mb-0 text-dark" style="padding-left: 10px">B2L</h2>
+		</div>
+		<ul class="nav flex-column mt-3">
+			<li class="nav-item">
+				<a class="nav-link fas fa-home" href="{{ path('home_index') }}">
+					Accueil</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link fas fa-table" href="{{ path('wiki_index') }}">
+					Wiki Des Poissons</a>
+			</li>
+		</ul>
+	</nav>
 </div>
+</div>
+{% block javascripts %}
+<script src="{{ asset('js/navbar/navbar.js') }}"></script>
+{% endblock %}
