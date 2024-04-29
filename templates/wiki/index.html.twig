@@ -9,7 +9,7 @@
 
     {% for poisson in Poisson1 %}
     <p>
-        <a href="{{ path('wiki_details', {'id': poisson.id}) }}" class="btn btn-primary">{{ poisson.id }}</a>
+        <a href="{{ path('wiki_details1') }}" class="btn btn-primary">{{poisson.nom}}</a>
         {{ poisson.Nom }}
         
     </p>    
