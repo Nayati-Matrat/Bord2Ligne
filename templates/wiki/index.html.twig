@@ -1,38 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bord 2 Ligne Wiki{% endblock %}
+{% block title %}Bord 2 Ligne Wiki
+{% endblock %}
 
 {% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('public/config_css/wiki.css') }}">
+	<link rel="stylesheet" href="{{ asset('config_css/wiki.css') }}"/>
 {% endblock %}
 
 {% block body %}
-
-<section class="poisson">
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Wiki des Poissons</h1>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Description</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for poisson in Poisson1 %}
-                <tr>
-                    <td>{{ poisson.nom }}</td>
-                    <td>{{ poisson.PRESENTATIONDUBIOTOPE }}</td>
-                    <td>
-                        <a href="{{ path('wiki_details1', {'id': poisson.id}) }}" class="btn btn-primary">Voir</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</section>
-
+		<section class="poisson">
+			<div class="container mt-5">
+				<h1 class="text-center mb-4">Wiki des Poissons</h1>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Description</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for poisson in Poisson1 %}
+							<tr>
+								<td>{{ poisson.nom }}</td>
+								<td>{{ poisson.PRESENTATIONDUBIOTOPE }}</td>
+								<td>
+									<a href="{{ path('wiki_details1', {'id': poisson.id}) }}" class="btn btn-primary">Voir</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</section>
 {% endblock %}
