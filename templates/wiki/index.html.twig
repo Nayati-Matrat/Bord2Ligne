@@ -10,15 +10,29 @@
 {% block body %}
 
 <section class="poisson">
-    <h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
-
-    {% for poisson in Poisson1 %}
-    <p>
-        <a href="{{ path('wiki_details1') }}" class="btn btn-primary">{{poisson.nom}}</a>
-        {{ poisson.Nom }}
-        
-    </p>    
-   
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Wiki des Poissons</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for poisson in Poisson1 %}
+                <tr>
+                    <td>{{ poisson.nom }}</td>
+                    <td>{{ poisson.PRESENTATIONDUBIOTOPE }}</td>
+                    <td>
+                        <a href="{{ path('wiki_details1', {'id': poisson.id}) }}" class="btn btn-primary">Voir</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </section>
-{% endfor %}
+
 {% endblock %}
