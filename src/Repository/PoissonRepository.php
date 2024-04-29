@@ -54,13 +54,15 @@ class PoissonRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Poisson
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findOneBySomeField(): ?Poisson
+    {
+        return $this->createQueryBuilder('p')
+            ->leftJoin('p.Nom', 'nom')
+            ->andWhere('nom = :val')
+            ->setParameter('val', 'Silure')
+            ->getQuery()
+            ->getSingleResult();
+
+        ;
+    }
 }
