@@ -19,10 +19,33 @@ document.addEventListener('DOMContentLoaded', function () {
     gigachadMenu.style.right = '0';
     gigachadMenu.style.height = '300px';
     gigachadMenu.style.overflowY = 'auto';
-    gigachadMenu.style.pointerEvents = 'none'; // Ne pas réagir aux clics
+
+    // Conteneur pour le titre et le bouton Supprimer tous les marqueurs
+    var titleContainer = document.createElement('div');
+    titleContainer.classList.add('d-flex', 'justify-content-between', 'align-items-center', 'mb-3');
+
+    // Titre du menu
+    var gigachadTitle = document.createElement('h5');
+    gigachadTitle.textContent = 'Liste des points';
+
+    // Bouton pour supprimer tous les marqueurs
+    var clearMarkersBtn = document.createElement('button');
+    clearMarkersBtn.innerHTML = '<i class="fas fa-trash"></i>';
+    clearMarkersBtn.classList.add('btn', 'btn-danger');
+    clearMarkersBtn.addEventListener('click', function () {
+        console.log('Supprimer tous les marqueurs clicked'); // Débogage
+        clearAllMarkers();
+    });
+
+    // Ajouter le titre et le bouton au conteneur
+    titleContainer.appendChild(gigachadTitle);
+    titleContainer.appendChild(clearMarkersBtn);
+
+    // Ajouter le conteneur au menu Gigachad
+    gigachadMenu.appendChild(titleContainer);
 
     var gigachadContent = document.createElement('div');
-    gigachadContent.innerHTML = '<h5>Liste des points</h5><ul id="marker-list" class="list-group"></ul>';
+    gigachadContent.innerHTML = '<ul id="marker-list" class="list-group"></ul>';
     gigachadMenu.appendChild(gigachadContent);
 
     document.body.appendChild(gigachadMenu);
@@ -62,6 +85,16 @@ document.addEventListener('DOMContentLoaded', function () {
             mymap.setView(markerData.latlng, 13);
         });
         markerList.appendChild(listItem);
+    }
+
+    // Fonction pour supprimer tous les marqueurs
+    function clearAllMarkers() {
+        markers.forEach(function (marker) {
+            marker.remove();
+        });
+        markers = []; // Réinitialiser le tableau des marqueurs
+        localStorage.clear(); // Effacer tous les marqueurs de localStorage
+        document.getElementById('marker-list').innerHTML = ''; // Vider la liste dans le menu Gigachad
     }
 
     // Charger les marqueurs depuis localStorage et les ajouter au menu Gigachad
