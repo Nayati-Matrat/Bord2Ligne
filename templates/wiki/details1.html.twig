@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bonjour{% endblock %}
+
+{% block body %}
+<h1>Bonjour !</h1>
+<p>Bienvenue sur notre page de salutation.</p>
+
+{% for poisson in Poisson2 %}
+    <p>
+        {{ poisson.Nom }}
+        
+    </p>    
+   
+</section>
+{% endfor %}
+{% endblock %}

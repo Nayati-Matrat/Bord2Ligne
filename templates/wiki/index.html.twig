@@ -4,6 +4,16 @@
 
 {% block body %}
 
-<h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
+<section class="poisson">
+    <h1 style="text-align: center">Bonjour et bienvenu sur la partie wiki de Bord 2 Ligne</h1>
 
+    {% for poisson in Poisson1 %}
+    <p>
+        <a href="{{ path('wiki_details1') }}" class="btn btn-primary">{{poisson.nom}}</a>
+        {{ poisson.Nom }}
+        
+    </p>    
+   
+</section>
+{% endfor %}
 {% endblock %}
