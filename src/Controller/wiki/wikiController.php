@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 Use App\Entity\Poisson;
 Use App\Repository\PoissonRepository;
 
+
 /**
  * @Route("/wiki", name="wiki_")
  */
@@ -31,7 +32,7 @@ class wikiController extends AbstractController
     }
     
 /**
- * @Route("/poisson/{id}", name="details")
+ * @Route("/poisson", name="details")
  */
 public function details(Poisson $poisson): Response
 {
