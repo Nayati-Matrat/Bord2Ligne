@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
     gigachadMenu.style.right = '0';
     gigachadMenu.style.height = '300px';
     gigachadMenu.style.overflowY = 'auto';
+    gigachadMenu.style.transition = 'bottom 1s';
 
     // Conteneur pour le titre et le bouton Supprimer tous les marqueurs
     var titleContainer = document.createElement('div');
